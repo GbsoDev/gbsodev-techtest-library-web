@@ -1,0 +1,8 @@
+version: '3.9'
+services:
+  gbsodev-techtest-library-web:
+    tty: true
+    image: node:lts-alpine
+    working_dir: /app/gbsodev-techtest-library-web
+    ports:
+      - 4200:4200

@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+  gbsodev-techtest-library-web:
+    volumes:
+      - ./:/app/my-storage-learning:cached
+    working_dir: /app/my-storage-learning
+    command: sh -c "./start.sh && tail -f /dev/null"
+    environment:
+      - WATCHPACK_POLLING=true
