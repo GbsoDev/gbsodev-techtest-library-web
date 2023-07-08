@@ -1,1 +1,33 @@
-<p>libro-form works!</p>
+<p>{{ updating ? 'Actualizar libro' : 'Registrar nuevo libro' }}</p>
+<form (ngSubmit)="saveLibro()">
+  <div>
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" [(ngModel)]="libro.titulo" required>
+  </div>
+
+  <div>
+    <label for="editorialId">Editorial:</label>
+    <select id="editorialId" name="editorialId" [(ngModel)]="libro.editorialId" required>
+      <option *ngFor="let editorial of editoriales" [value]="editorial.id">{{ editorial.id }} - {{ editorial.nombre }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label for="sinopsis">Sinopsis:</label>
+    <textarea id="sinopsis" name="sinopsis" [(ngModel)]="libro.sinopsis" required></textarea>
+  </div>
+
+  <div>
+    <label for="nPaginas">Número de páginas:</label>
+    <input type="text" id="nPaginas" name="nPaginas" [(ngModel)]="libro.nPaginas" required>
+  </div>
+
+  <div>
+    <label for="autores">Autores:</label>
+    <select id="autores" name="autores" [(ngModel)]="libro.autores" multiple required>
+      <option *ngFor="let autor of autores" [value]="autor">{{ autor.nombre }}</option>
+    </select>
+  </div>
+
+  <button type="submit">{{ updating ? 'Actualizar' : 'Guardar' }}</button>
+</form>

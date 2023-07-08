@@ -1,2 +1,8 @@
-<p>libros works!</p>
+<div>
+  <h2>Listado de Libros</h2>
+  <ul>
+    <li *ngFor="let libro of libros">{{ libro.titulo }} - {{ libro.sinopsis }}</li>
+  </ul>
+</div>
+
 <router-outlet></router-outlet>

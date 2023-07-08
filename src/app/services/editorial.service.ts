@@ -1,11 +1,11 @@
 import { Injectable, Injector } from '@angular/core';
 import { BaseService } from './base.service';
-import { Autor } from '../model/autor';
+import { Editorial } from '../model/editorial';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EditorialService extends BaseService<Autor, number>{
+export class EditorialService extends BaseService<Editorial, number>{
   override endpoint: string = 'editoriales';
 
   constructor(injector: Injector) {

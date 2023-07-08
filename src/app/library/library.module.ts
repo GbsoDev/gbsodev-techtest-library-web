@@ -12,6 +12,7 @@ import { AutorFormComponent } from './autor-form/autor-form.component';
 import { LibroFormComponent } from './libro-form/libro-form.component';
 import { EditorialFormComponent } from './editorial-form/editorial-form.component';
 import { LibraryComponent } from './library.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { LibraryComponent } from './library.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     LibraryRoutingModule
   ]
 })

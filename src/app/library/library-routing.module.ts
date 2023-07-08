@@ -13,26 +13,26 @@ import { LibraryComponent } from './library.component';
 
 const routes: Routes = [
   {
-    path: 'library/libros', component: LibrosComponent, children: [
+    path: 'libros', component: LibrosComponent, children: [
+      { path: 'libro', component: LibroFormComponent },
+      { path: 'libro/:id', component: LibroFormComponent },
       { path: ':id', component: LibroDetailsComponent }
     ]
   },
   {
-    path: 'library/autores', component: AutoresComponent, children: [
+    path: 'autores', component: AutoresComponent, children: [
+      { path: 'autor', component: AutorFormComponent },
+      { path: 'autor/:id', component: AutorFormComponent },
       { path: ':id', component: AutorDetailsComponent }
     ]
   },
   {
-    path: 'library/editoriales', component: EditorialesComponent, children: [
+    path: 'editoriales', component: EditorialesComponent, children: [
+      { path: 'editorial', component: EditorialFormComponent },
+      { path: 'editorial/:id', component: EditorialFormComponent },
       { path: ':id', component: EditorialDetailsComponent }
     ]
   },
-  { path: 'library/libro', component: LibroFormComponent },
-  { path: 'library/autor', component: AutorFormComponent },
-  { path: 'library/editorial', component: EditorialFormComponent },
-  { path: 'library/libro/:id', component: LibroFormComponent },
-  { path: 'library/autor/:id', component: AutorFormComponent },
-  { path: 'library/editorial/:id', component: EditorialFormComponent }
 ];
 
 @NgModule({
