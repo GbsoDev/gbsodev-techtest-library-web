@@ -1,8 +1,14 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppSettingsService } from './app-settings/app-settings.service';
+import { HttpClientModule } from '@angular/common/http';
+
+export const appsettingsFactory = (appSettingsService: AppSettingsService) => {
+  return ()=> appSettingsService.loadAppSettings();
+}
 
 @NgModule({
   declarations: [
@@ -10,9 +16,17 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appsettingsFactory,
+      deps: [AppSettingsService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
