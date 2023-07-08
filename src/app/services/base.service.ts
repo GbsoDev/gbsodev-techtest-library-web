@@ -42,6 +42,6 @@ export abstract class BaseService<TEntity, TKey> {
 
   protected buildUrl(id?: TKey): string {
     let urlResult = this.appSettings.urlApi + '/' + this.endpoint;
-    return urlResult !== null ? urlResult + '/' + id : urlResult;
+    return id != null ? urlResult + '/' + id : urlResult;
   }
 }
