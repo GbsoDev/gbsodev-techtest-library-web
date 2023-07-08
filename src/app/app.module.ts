@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppSettingsService } from './app-settings/app-settings.service';
+import { LibraryModule } from './library/library.module';
 import { HttpClientModule } from '@angular/common/http';
 
 export const appsettingsFactory = (appSettingsService: AppSettingsService) => {
@@ -17,7 +18,8 @@ export const appsettingsFactory = (appSettingsService: AppSettingsService) => {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    LibraryModule
   ],
   providers: [
     {
