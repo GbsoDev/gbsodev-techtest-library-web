@@ -11,6 +11,7 @@ import { AutorDetailsComponent } from './autor-details/autor-details.component';
 import { AutorFormComponent } from './autor-form/autor-form.component';
 import { LibroFormComponent } from './libro-form/libro-form.component';
 import { EditorialFormComponent } from './editorial-form/editorial-form.component';
+import { LibraryComponent } from './library.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { EditorialFormComponent } from './editorial-form/editorial-form.componen
     EditorialDetailsComponent,
     AutorFormComponent,
     LibroFormComponent,
-    EditorialFormComponent
+    EditorialFormComponent,
+    LibraryComponent
   ],
   imports: [
     CommonModule,

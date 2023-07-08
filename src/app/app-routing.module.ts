@@ -1,8 +1,13 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LibraryComponent } from './library/library.component';
 
 const routes: Routes = [
-  {path: 'library', loadChildren: () =>  import('./library/library.module').then(x=> x.LibraryModule) }
+  {
+    path: 'library'
+    , loadChildren: () =>  import('./library/library.module').then(x=> x.LibraryModule)
+    , component :LibraryComponent
+  }
 ];
 
 @NgModule({

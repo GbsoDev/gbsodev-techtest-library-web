@@ -23,7 +23,7 @@ export class LibrosComponent implements OnInit {
           this.libros = value;
         },
         error: (error: any) => {
-          console.error(error);
+          console.log(error);
         },
         complete: () => {
 
