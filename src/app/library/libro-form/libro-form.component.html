@@ -25,7 +25,7 @@
   <div>
     <label for="autores">Autores:</label>
     <select id="autores" name="autores" [(ngModel)]="libro.autores" multiple required>
-      <option *ngFor="let autor of autores" [value]="autor">{{ autor.nombre }}</option>
+      <option *ngFor="let autor of autores" [value]="autor" [selected]="autorsIsSelected(autor)">{{ autor.nombre }}</option>
     </select>
   </div>
 

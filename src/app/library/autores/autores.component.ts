@@ -31,4 +31,15 @@ export class AutoresComponent implements OnInit {
       }
     );
   }
+  deleteAutor(autor: Autor) {
+    this.autorService.delete(autor.id!).subscribe({
+      next: (response: any) => {
+        console.log('Autor eliminado');
+        this.loadAutores();
+      },
+      error: (error: any) => {
+        console.log('Error al eliminar autor', error);
+      }
+    });
+  }
 }

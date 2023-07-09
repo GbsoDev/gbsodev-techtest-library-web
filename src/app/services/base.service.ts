@@ -30,8 +30,8 @@ export abstract class BaseService<TEntity, TKey> {
     return this.httpClient.post<TEntity>(url, body);
   }
 
-  put(id: TKey, body: TEntity): Observable<TEntity> {
-    let url = this.buildUrl(id);
+  put(body: TEntity): Observable<TEntity> {
+    let url = this.buildUrl();
     return this.httpClient.put<TEntity>(url, body);
   }
 

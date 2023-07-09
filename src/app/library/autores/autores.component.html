@@ -1,8 +1,26 @@
 <div>
   <h2>Listado de Autores</h2>
-  <ul>
-    <li *ngFor="let autor of autores">{{ autor.nombre }} - {{ autor.apellidos }}</li>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let autor of autores">
+        <td>{{ autor.nombre }}</td>
+        <td>{{ autor.apellidos }}</td>
+        <td>
+          <a routerLink="{{ autor.id }}"><button>Ver</button></a>
+          <a routerLink="autor"><button>Nuevo</button></a>
+          <a routerLink="autor/{{ autor.id }}"><button>Editar</button></a>
+          <button (click)="deleteAutor(autor)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <router-outlet></router-outlet>

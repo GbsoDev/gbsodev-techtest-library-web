@@ -1,7 +1,7 @@
 import { Autor } from "./autor";
 
 export interface Libro {
-  Id?: number;
+  isbn: number;
   titulo: string;
   editorialId: number;
   sinopsis: string;

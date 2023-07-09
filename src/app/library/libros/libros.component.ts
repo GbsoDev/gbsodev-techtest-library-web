@@ -32,4 +32,15 @@ export class LibrosComponent implements OnInit {
     )
   }
 
+  deleteLibro(libro: Libro){
+    this.libroService.delete(libro.isbn).subscribe({
+      next: (response: any) => {
+        console.log('Libro eliminado');
+        this.loadLibros();
+      },
+      error: (error: any) => {
+        console.log('Error al eliminar libro', error);
+      }
+    });
+  }
 }

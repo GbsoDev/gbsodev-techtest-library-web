@@ -16,6 +16,7 @@ export class LibroFormComponent {
   updating: boolean = false;
 
   libro: Libro = {
+    isbn: 0,
     titulo: '',
     editorialId: 0,
     sinopsis: '',
@@ -35,9 +36,9 @@ export class LibroFormComponent {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    const idParam = this.route.snapshot.paramMap.get('libroId');
+    const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam != null && !isNaN(Number(idParam))) {
-      this.libroId = Number(this.route.snapshot.paramMap.get('libroId'));
+      this.libroId = Number(idParam);
       this.loadLibro()
       this.updating = true;
     }
@@ -51,7 +52,9 @@ export class LibroFormComponent {
     this.libroService.get(this.libroId).subscribe(
       {
         next: (value: Libro) => {
-          this.libro = value;
+          if(value != null){
+            this.libro = value;
+          }
         },
         error: (error: any) => {
           console.log(error);
@@ -100,7 +103,7 @@ export class LibroFormComponent {
   saveLibro() {
     if (this.updating) {
       // Lógica para guardar el libro
-      this.libroService.put(this.libroId, this.libro).subscribe(
+      this.libroService.put(this.libro).subscribe(
         {
           next: (response: any) => {
             console.log('Libro guardado exitosamente');
@@ -128,5 +131,12 @@ export class LibroFormComponent {
         }
       );
     }
+  }
+
+  autorsIsSelected(autor: Autor): boolean {
+    if (this.libro.autores) {
+      return this.autores.some(x=> x.id === autor.id);
+    }
+    return false;
   }
 }
