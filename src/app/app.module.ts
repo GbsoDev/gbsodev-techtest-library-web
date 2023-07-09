@@ -7,6 +7,7 @@ import { LibraryModule } from './library/library.module';
 import { HttpClientModule } from '@angular/common/http';
 import { loadConfigProvider } from './app-initializer/app.initializer';
 import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    LibraryModule
+    LibraryModule,
+    FormsModule,
   ],
   providers: [loadConfigProvider
   ],
