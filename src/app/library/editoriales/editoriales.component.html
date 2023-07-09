@@ -1,2 +1,26 @@
-<p>editoriales works!</p>
+<div>
+  <h2>Listado de Editoriales</h2>
+  <a routerLink="editorial"><button>Nuevo</button></a>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Sede</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let editorial of editoriales">
+        <td>{{ editorial.nombre }}</td>
+        <td>{{ editorial.sede }}</td>
+        <td>
+          <a routerLink="{{ editorial.id }}"><button>Ver</button></a>
+          <a routerLink="editorial/{{ editorial.id }}"><button>Editar</button></a>
+          <button (click)="deleteEditorial(editorial)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <router-outlet></router-outlet>

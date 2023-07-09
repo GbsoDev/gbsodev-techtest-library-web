@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Autor } from 'src/app/model/autor';
 import { Editorial } from 'src/app/model/editorial';
@@ -12,15 +12,10 @@ import { LibroService } from 'src/app/services/libro.service';
   templateUrl: './libro-form.component.html',
   styleUrls: ['./libro-form.component.scss']
 })
-export class LibroFormComponent {
+export class LibroFormComponent implements OnInit {
   updating: boolean = false;
 
   libro: Libro = {
-    isbn: 0,
-    titulo: '',
-    editorialId: 0,
-    sinopsis: '',
-    nPaginas: '',
     autores: []
   };
 
@@ -77,7 +72,6 @@ export class LibroFormComponent {
           console.log(error);
         },
         complete: () => {
-
         }
       }
     );
@@ -111,7 +105,6 @@ export class LibroFormComponent {
           },
           error: (error: any) => {
             console.log('Error al guardar el libro', error);
-            // Realiza cualquier acción adicional en caso de error
           }
         }
       );
@@ -126,7 +119,6 @@ export class LibroFormComponent {
           },
           error: (error: any) => {
             console.log('Error al guardar el libro', error);
-            // Realiza cualquier acción adicional en caso de error
           }
         }
       );

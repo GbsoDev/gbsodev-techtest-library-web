@@ -1,1 +1,12 @@
-<p>autor-form works!</p>
+<p>{{ updating ? 'Actualizar libro' : 'Registrar nuevo libro' }}</p>
+<form (ngSubmit)="saveAutor()">
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" [(ngModel)]="autor.nombre" required>
+  </div>
+  <div>
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" name="apellidos" [(ngModel)]="autor.apellidos" required>
+  </div>
+  <button type="submit">{{ updating ? 'Actualizar' : 'Guardar' }}</button>
+</form>

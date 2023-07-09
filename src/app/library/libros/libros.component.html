@@ -1,5 +1,6 @@
 <div>
   <h2>Listado de Libros</h2>
+  <a routerLink="libro"><button>Nuevo</button></a>
   <table>
     <thead>
       <tr>
@@ -14,7 +15,6 @@
         <td>{{ libro.sinopsis }}</td>
         <td>
           <a routerLink="{{ libro.isbn }}"><button>Ver</button></a>
-          <a routerLink="libro"><button>Nuevo</button></a>
           <a routerLink="libro/{{ libro.isbn }}"><button>Editar</button></a>
           <button (click)="deleteLibro(libro)">Eliminar</button>
         </td>

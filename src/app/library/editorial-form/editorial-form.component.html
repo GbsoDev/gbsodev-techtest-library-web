@@ -1,1 +1,13 @@
-<p>editorial-form works!</p>
+<p>{{ updating ? 'Actualizar editorial' : 'Registrar nueva editorial' }}</p>
+<form (ngSubmit)="saveEditorial()">
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" [(ngModel)]="editorial.nombre" required>
+  </div>
+  <div>
+    <label for="sede">Sede:</label>
+    <input type="text" id="sede" name="sede" [(ngModel)]="editorial.sede" required>
+  </div>
+
+  <button type="submit">{{ updating ? 'Actualizar' : 'Guardar' }}</button>
+</form>

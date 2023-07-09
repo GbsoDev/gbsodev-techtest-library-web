@@ -1,1 +1,36 @@
 <p>libro-details works!</p>
+<div>
+  <h2>Detalles del libro</h2>
+
+  <div>
+    <label>ISBN:</label>
+    <span>{{ libro?.isbn }}</span>
+  </div>
+
+  <div>
+    <label>Título:</label>
+    <span>{{ libro?.titulo }}</span>
+  </div>
+
+  <div>
+    <label>ID de la editorial:</label>
+    <span>{{ libro?.editorialNombre }}</span>
+  </div>
+
+  <div>
+    <label>Sinopsis:</label>
+    <span>{{ libro?.sinopsis }}</span>
+  </div>
+
+  <div>
+    <label>Número de páginas:</label>
+    <span>{{ libro?.nPaginas }}</span>
+  </div>
+
+  <div>
+    <label>Autores:</label>
+    <ul>
+      <li *ngFor="let autor of libro?.autores">{{ autor.nombre }} - {{autor.apellidos}}</li>
+    </ul>
+  </div>
+</div>

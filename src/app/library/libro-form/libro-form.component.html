@@ -1,6 +1,10 @@
 <p>{{ updating ? 'Actualizar libro' : 'Registrar nuevo libro' }}</p>
 <form (ngSubmit)="saveLibro()">
   <div>
+    <label for="isbn">ISBN:</label>
+    <input type="text" id="isbn" name="isbn" [(ngModel)]="libro.isbn" [disabled]="updating" required>
+  </div>
+  <div>
     <label for="titulo">Título:</label>
     <input type="text" id="titulo" name="titulo" [(ngModel)]="libro.titulo" required>
   </div>

@@ -1,5 +1,6 @@
 <div>
   <h2>Listado de Autores</h2>
+  <a routerLink="autor"><button>Nuevo</button></a>
   <table>
     <thead>
       <tr>
@@ -14,7 +15,6 @@
         <td>{{ autor.apellidos }}</td>
         <td>
           <a routerLink="{{ autor.id }}"><button>Ver</button></a>
-          <a routerLink="autor"><button>Nuevo</button></a>
           <a routerLink="autor/{{ autor.id }}"><button>Editar</button></a>
           <button (click)="deleteAutor(autor)">Eliminar</button>
         </td>

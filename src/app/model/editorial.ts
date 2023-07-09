@@ -1,5 +1,5 @@
 export interface Editorial {
   id?: number;
-  nombre: string;
-  sede: string;
+  nombre?: string;
+  sede?: string;
 }
