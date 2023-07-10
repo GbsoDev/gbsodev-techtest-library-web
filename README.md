@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+##### Herramientas requeridas
+	Docker Desktop
+##### Generar versión
+Run `ng build --configuration=production`
+
+##### Construir imagen docker
+run `docker build --pull --rm -f "Dockerfile" -t gbsodev/gbsodev-techtest-library-web:release "."`
+
+### Publicar contenedor en repositorio
+Run `docker push gbsodev/gbsodev-techtest-library-web:release`
+
+### Iniciar aplicación en solitario
+run `docker run -p 80:80 gbsodev/gbsodev-techtest-library-web:release`
+
+### Iniciar aplicación front, api y base de datos
+run `docker-compose up -p gbsodev-techtest-library`
