@@ -1,37 +1,34 @@
-<p>{{ updating ? 'Actualizar libro' : 'Registrar nuevo libro' }}</p>
 <form (ngSubmit)="saveLibro()">
-  <div>
+  <div class="form-group">
     <label for="isbn">ISBN:</label>
-    <input type="text" id="isbn" name="isbn" [(ngModel)]="libro.isbn" [disabled]="updating" required>
+    <input type="text" class="form-control" id="isbn" name="isbn" [(ngModel)]="libro.isbn" [disabled]="updating" required>
   </div>
-  <div>
+  <div class="form-group">
     <label for="titulo">Título:</label>
-    <input type="text" id="titulo" name="titulo" [(ngModel)]="libro.titulo" required>
+    <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="libro.titulo" required>
   </div>
-
-  <div>
+  <div class="form-group">
     <label for="editorialId">Editorial:</label>
-    <select id="editorialId" name="editorialId" [(ngModel)]="libro.editorialId" required>
-      <option *ngFor="let editorial of editoriales" [value]="editorial.id">{{ editorial.id }} - {{ editorial.nombre }}
-      </option>
+    <select class="form-control" id="editorialId" name="editorialId" [(ngModel)]="libro.editorialId" required>
+      <option *ngFor="let editorial of editoriales" [value]="editorial.id">{{ editorial.id }} - {{ editorial.nombre }}</option>
     </select>
   </div>
-  <div>
+  <div class="form-group">
     <label for="sinopsis">Sinopsis:</label>
-    <textarea id="sinopsis" name="sinopsis" [(ngModel)]="libro.sinopsis" required></textarea>
+    <textarea class="form-control" id="sinopsis" name="sinopsis" [(ngModel)]="libro.sinopsis" required></textarea>
   </div>
-
-  <div>
+  <div class="form-group">
     <label for="nPaginas">Número de páginas:</label>
-    <input type="text" id="nPaginas" name="nPaginas" [(ngModel)]="libro.nPaginas" required>
+    <input type="text" class="form-control" id="nPaginas" name="nPaginas" [(ngModel)]="libro.nPaginas" required>
   </div>
-
-  <div>
+  <div class="form-group">
     <label for="autores">Autores:</label>
-    <select id="autores" name="autores" [(ngModel)]="libro.autores" multiple required>
+    <select class="form-control" id="autores" name="autores" [(ngModel)]="libro.autores" multiple required>
       <option *ngFor="let autor of autores" [value]="autor" [selected]="autorsIsSelected(autor)">{{ autor.nombre }}</option>
     </select>
   </div>
-
-  <button type="submit">{{ updating ? 'Actualizar' : 'Guardar' }}</button>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+    <button type="submit" class="btn btn-primary">{{ updating ? 'Actualizar' : 'Guardar' }}</button>
+  </div>
 </form>

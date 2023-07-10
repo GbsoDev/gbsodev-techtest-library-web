@@ -1,12 +1,12 @@
 <div>
   <h2>Listado de Libros</h2>
-  <a routerLink="libro"><button>Nuevo</button></a>
-  <table>
-    <thead>
+  <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" (click)="watching = true;" routerLink="libro"><button class="btn btn-primary">Nuevo</button></a>
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
-        <th>Título</th>
-        <th>Sinopsis</th>
-        <th>Acciones</th>
+        <th scope="col">Título</th>
+        <th scope="col">Sinopsis</th>
+        <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -14,14 +14,27 @@
         <td>{{ libro.titulo }}</td>
         <td>{{ libro.sinopsis }}</td>
         <td>
-          <a routerLink="{{ libro.isbn }}"><button>Ver</button></a>
-          <a routerLink="libro/{{ libro.isbn }}"><button>Editar</button></a>
-          <button (click)="deleteLibro(libro)">Eliminar</button>
+          <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" (click)="updating = false; watching = false;" routerLink="{{ libro.isbn }}"><button class="btn btn-info">Ver</button></a>
+          <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" (click)="updating = true; watching = false;" routerLink="libro/{{ libro.isbn }}"><button class="btn btn-warning">Editar</button></a>
+          <button class="btn btn-danger" (click)="deleteLibro(libro)">Eliminar</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-
-<router-outlet></router-outlet>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ watching ? 'Detalles de libro' : updating ? 'Actualizar libro' : 'Registrar nuevo libro' }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

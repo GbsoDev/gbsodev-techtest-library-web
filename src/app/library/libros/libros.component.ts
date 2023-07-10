@@ -9,6 +9,8 @@ import { LibroService } from 'src/app/services/libro.service';
 })
 export class LibrosComponent implements OnInit {
   libros:Libro[]=[];
+  updating:boolean=false;
+  watching:boolean=false;
 
   constructor(private libroService: LibroService){}
 
