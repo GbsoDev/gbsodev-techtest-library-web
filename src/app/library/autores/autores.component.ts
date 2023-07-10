@@ -8,6 +8,8 @@ import { AutorService } from 'src/app/services/autor.service';
   styleUrls: ['./autores.component.scss']
 })
 export class AutoresComponent implements OnInit {
+  updating:boolean=false;
+  watching:boolean=false;
   autores: Autor[] = [];
 
   constructor(private autorService: AutorService) { }

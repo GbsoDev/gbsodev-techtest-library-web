@@ -1,13 +1,14 @@
-<p>{{ updating ? 'Actualizar editorial' : 'Registrar nueva editorial' }}</p>
 <form (ngSubmit)="saveEditorial()">
-  <div>
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" [(ngModel)]="editorial.nombre" required>
+  <div class="form-group">
+    <label for="nombre" for="nombre">Nombre:</label>
+    <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="editorial.nombre" required>
   </div>
-  <div>
-    <label for="sede">Sede:</label>
-    <input type="text" id="sede" name="sede" [(ngModel)]="editorial.sede" required>
+  <div class="form-group">
+    <label for="sede" for="sede">Sede:</label>
+    <input class="form-control" type="text" id="sede" name="sede" [(ngModel)]="editorial.sede" required>
   </div>
-
-  <button type="submit">{{ updating ? 'Actualizar' : 'Guardar' }}</button>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+    <button type="submit" class="btn btn-primary">{{ updating ? 'Actualizar' : 'Guardar' }}</button>
+  </div>
 </form>

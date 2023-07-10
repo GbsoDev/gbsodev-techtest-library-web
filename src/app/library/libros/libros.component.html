@@ -1,6 +1,6 @@
 <div>
   <h2>Listado de Libros</h2>
-  <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" (click)="watching = true;" routerLink="libro"><button class="btn btn-primary">Nuevo</button></a>
+  <a data-toggle="modal" data-target="#exampleModal" (click)="watching = true;" routerLink="libro"><button class="btn btn-primary">Nuevo</button></a>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -14,8 +14,8 @@
         <td>{{ libro.titulo }}</td>
         <td>{{ libro.sinopsis }}</td>
         <td>
-          <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" (click)="updating = false; watching = false;" routerLink="{{ libro.isbn }}"><button class="btn btn-info">Ver</button></a>
-          <a data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap" (click)="updating = true; watching = false;" routerLink="libro/{{ libro.isbn }}"><button class="btn btn-warning">Editar</button></a>
+          <a data-toggle="modal" data-target="#exampleModal" (click)="updating = false; watching = false;" routerLink="{{ libro.isbn }}"><button class="btn btn-info">Ver</button></a>
+          <a data-toggle="modal" data-target="#exampleModal" (click)="updating = true; watching = false;" routerLink="libro/{{ libro.isbn }}"><button class="btn btn-warning">Editar</button></a>
           <button class="btn btn-danger" (click)="deleteLibro(libro)">Eliminar</button>
         </td>
       </tr>

@@ -8,6 +8,8 @@ import { EditorialService } from 'src/app/services/editorial.service';
   styleUrls: ['./editoriales.component.scss']
 })
 export class EditorialesComponent implements OnInit {
+  updating:boolean=false;
+  watching:boolean=false;
   editoriales: Editorial[] = [];
 
   constructor(private editorialService: EditorialService) {}
