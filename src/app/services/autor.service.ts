@@ -7,8 +7,4 @@ import { Autor } from '../model/autor';
 })
 export class AutorService extends BaseService<Autor, number>{
   override endpoint: string = 'autores';
-
-  constructor(injector: Injector) {
-    super(injector);
-  }
 }

@@ -10,6 +10,7 @@ import { EditorialesComponent } from './editoriales/editoriales.component';
 import { EditorialDetailsComponent } from './editorial-details/editorial-details.component';
 import { EditorialFormComponent } from './editorial-form/editorial-form.component';
 import { LibraryComponent } from './library.component';
+import { authGuard as AuthGuard } from '../auth.guard';
 
 const routes: Routes = [
   {

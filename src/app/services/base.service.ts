@@ -2,17 +2,24 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AppSettingsService } from "../app-initializer/app-settings.service";
 import { AppSettings } from "../app-initializer/appsettings";
-import { Injector } from "@angular/core";
+import { inject } from "@angular/core";
 
 export abstract class BaseService<TEntity, TKey> {
 
   abstract endpoint: string;
-  protected appSettings:AppSettings;
   protected httpClient: HttpClient;
+  private appSettingsService: AppSettingsService;
+  protected tokenKey = 'token';
+  protected tokenExpireKey = 'token-expire';
 
-  constructor(private injector: Injector) {
-    this.appSettings = injector.get(AppSettingsService).appSettings;
-    this.httpClient = injector.get(HttpClient);
+
+  constructor() {
+    this.appSettingsService = inject(AppSettingsService)
+    this.httpClient = inject(HttpClient);
+  }
+
+  protected appSettings(): AppSettings {
+    return this.appSettingsService.appSettings
   }
 
   get(id: TKey): Observable<TEntity> {
@@ -41,7 +48,12 @@ export abstract class BaseService<TEntity, TKey> {
   }
 
   protected buildUrl(id?: TKey): string {
-    let urlResult = this.appSettings.urlApi + '/' + this.endpoint;
+    let urlResult = this.appSettingsService.appSettings.urlApi + '/' + this.endpoint;
     return id != null ? urlResult + '/' + id : urlResult;
+  }
+
+  getToken(): string | null {
+     // Obtener el token desde localStorage
+    return localStorage.getItem(this.tokenKey);
   }
 }

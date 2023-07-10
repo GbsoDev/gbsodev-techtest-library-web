@@ -7,8 +7,4 @@ import { Editorial } from '../model/editorial';
 })
 export class EditorialService extends BaseService<Editorial, number>{
   override endpoint: string = 'editoriales';
-
-  constructor(injector: Injector) {
-    super(injector);
-  }
 }

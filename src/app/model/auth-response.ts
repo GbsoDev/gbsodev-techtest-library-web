@@ -1,4 +1,4 @@
 export class AuthResponse {
-  public Token?: string;
-  public ExpireAt?: Date;
+  public token!: string;
+  public expireAt!: Date;
 }

@@ -9,20 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(private autService: AuthService, private router: Router,){
-
-  }
+  constructor(private authService: AuthService, private router: Router) {  }
   usuario: Usuario = new Usuario;
 
   login() {
-      this.autService.post(this.usuario).subscribe({
-        next: (response: any) => {
-          console.log('Autor guardado exitosamente');
-          this.router.navigate(['/library']);
-        },
-        error: (error: any) => {
-          console.log('Error al guardar el autor', error);
-        }
-      });
+    this.authService.login(this.usuario).subscribe({
+      next: (response: any) => {
+        console.log('Autenticación exitosa');
+        this.router.navigate(['/library']);
+      },
+      error: (error: any) => {
+        console.log('Error al Autenticar', error);
+      }
+    });
   }
 }

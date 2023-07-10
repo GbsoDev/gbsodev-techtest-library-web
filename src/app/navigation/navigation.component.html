@@ -1,0 +1,9 @@
+<div *ngIf="isLoggedIn()">
+  <!-- Mostrar elementos para usuarios autenticados -->
+  <button (click)="logout()">Cerrar sesión</button>
+</div>
+
+<div *ngIf="!isLoggedIn()">
+  <!-- Mostrar elementos para usuarios no autenticados -->
+  <a routerLink="/login">Iniciar sesión</a>
+</div>

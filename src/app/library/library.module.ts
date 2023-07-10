@@ -32,6 +32,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     LibraryRoutingModule
+  ],
+  providers: [
   ]
 })
 export class LibraryModule { }
