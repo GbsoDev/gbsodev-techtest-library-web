@@ -10,7 +10,7 @@ services:
     environment:
       NODE_ENV: development
     ports:
-      - 80:80
+      - 8080:80
       - 9229:9229
     expose:
       - 9229
