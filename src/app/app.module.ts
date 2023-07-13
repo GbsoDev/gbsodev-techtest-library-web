@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
 import { TokenInterceptor } from './interceptors/tokenInterceptor';
 import { AppSettingsService } from './app-initializer/app-settings.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     LibraryModule,
     FormsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [
     AppSettingsService,
@@ -34,7 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    NgbActiveModal
   ],
   bootstrap: [AppComponent]
 })

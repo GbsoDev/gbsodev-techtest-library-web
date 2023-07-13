@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Editorial } from 'src/app/model/editorial';
 import { EditorialService } from 'src/app/services/editorial.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-editoriales',
@@ -8,11 +9,9 @@ import { EditorialService } from 'src/app/services/editorial.service';
   styleUrls: ['./editoriales.component.scss']
 })
 export class EditorialesComponent implements OnInit {
-  updating:boolean=false;
-  watching:boolean=false;
   editoriales: Editorial[] = [];
-
-  constructor(private editorialService: EditorialService) {}
+  formMode?:string|null;
+  constructor(private editorialService: EditorialService, private modalService: NgbModal) {}
 
   ngOnInit() {
     this.loadEditoriales();
@@ -25,8 +24,7 @@ export class EditorialesComponent implements OnInit {
       },
       error: (error: any) => {
         console.log(error);
-      },
-      complete: () => {}
+      }
     });
   }
 
@@ -42,5 +40,10 @@ export class EditorialesComponent implements OnInit {
         }
       });
     }
+  }
+
+  openModal(content: any, formMode: string) {
+    this.formMode = formMode;
+    this.modalService.open(content, { ariaLabelledBy: 'modalbasictitle' });
   }
 }

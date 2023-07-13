@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Editorial } from 'src/app/model/editorial';
 import { EditorialService } from 'src/app/services/editorial.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-editorial-form',
@@ -9,15 +10,14 @@ import { EditorialService } from 'src/app/services/editorial.service';
   styleUrls: ['./editorial-form.component.scss']
 })
 export class EditorialFormComponent implements OnInit {
-  updating: boolean = false;
   editorial: Editorial = {};
-
   editorialId!: number;
-
+  updating:boolean=false;
   constructor(
     private editorialService: EditorialService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private activeModal: NgbActiveModal
   ) {}
 
   ngOnInit() {
@@ -45,11 +45,12 @@ export class EditorialFormComponent implements OnInit {
   }
 
   saveEditorial() {
-    if (this.updating) {
+    if (this.editorialId) {
       // Lógica para guardar la editorial actualizada
       this.editorialService.put(this.editorial).subscribe({
         next: (response: any) => {
           console.log('Editorial guardada exitosamente');
+          this.activeModal.dismiss();
           this.router.navigate(['/editoriales']);
         },
         error: (error: any) => {
@@ -61,6 +62,7 @@ export class EditorialFormComponent implements OnInit {
       this.editorialService.post(this.editorial).subscribe({
         next: (response: any) => {
           console.log('Editorial guardada exitosamente');
+          this.activeModal.dismiss();
           this.router.navigate(['/editoriales']);
         },
         error: (error: any) => {
@@ -68,5 +70,9 @@ export class EditorialFormComponent implements OnInit {
         }
       });
     }
+  }
+
+  closeModal(){
+    this.activeModal.dismiss();
   }
 }
