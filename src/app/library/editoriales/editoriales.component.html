@@ -1,6 +1,6 @@
 <div>
   <h2>Listado de Editoriales</h2>
-  <a data-toggle="modal" data-target="#exampleModal" (click)="updating = false; watching = false" routerLink="editorial"><button class="btn btn-primary">Nuevo</button></a>
+  <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updating = false; watching = false" routerLink="editorial"><button class="btn btn-primary">Nuevo</button></a>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -14,8 +14,8 @@
         <td>{{ editorial.nombre }}</td>
         <td>{{ editorial.sede }}</td>
         <td>
-          <a data-toggle="modal" data-target="#exampleModal" (click)="updating = false; watching = true;" routerLink="{{ editorial.id }}"><button class="btn btn-info">Ver</button></a>
-          <a data-toggle="modal" data-target="#exampleModal" (click)="updating = true; watching = false;" routerLink="editorial/{{ editorial.id }}"><button class="btn btn-warning">Editar</button></a>
+          <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updating = false; watching = true;" routerLink="{{ editorial.id }}"><button class="btn btn-info">Ver</button></a>
+          <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updating = true; watching = false;" routerLink="editorial/{{ editorial.id }}"><button class="btn btn-warning">Editar</button></a>
           <button class="btn btn-danger" (click)="deleteEditorial(editorial)">Eliminar</button>
         </td>
       </tr>
@@ -28,9 +28,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{ watching ? 'Detalles del editorial' : updating ? 'Actualizar editorial' : 'Registrar nuevo editorial' }}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <router-outlet></router-outlet>
