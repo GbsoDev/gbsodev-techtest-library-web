@@ -29,8 +29,8 @@ const routes: Routes = [
   },
   {
     path: 'editoriales', component: EditorialesComponent, children: [
-      { path: 'editorial', component: EditorialFormComponent },
-      { path: 'editorial/:id', component: EditorialFormComponent },
+      // { path: 'editorial', component: EditorialFormComponent },
+      // { path: 'editorial/:id', component: EditorialFormComponent },
       { path: ':id', component: EditorialDetailsComponent }
     ]
   },

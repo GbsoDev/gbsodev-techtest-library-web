@@ -1,6 +1,6 @@
 <div>
   <h2>Listado de Editoriales</h2>
-  <a (click)="openModal(modalContent, 'new')" routerLink="editorial" ></a>
+  <a (click)="openFormModal('new')"></a>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -14,8 +14,8 @@
         <td>{{ editorial.nombre }}</td>
         <td>{{ editorial.sede }}</td>
         <td>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(modalContent, 'view')" routerLink="{{ editorial.id }}"><button class="btn btn-info">Ver</button></a>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(modalContent, 'edit')" routerLink="editorial/{{ editorial.id }}"><button class="btn btn-warning">Editar</button></a>
+          <!-- <a data-bs-toggle="modal" (click)="openViewModal('view', editorial.id)" routerLink="{{ editorial.id }}"><button class="btn btn-info">Ver</button></a> -->
+          <a data-bs-toggle="modal" (click)="openFormModal('edit', editorial.id)"><button class="btn btn-warning">Editar</button></a>
           <button class="btn btn-danger" (click)="deleteEditorial(editorial)">Eliminar</button>
         </td>
       </tr>
@@ -23,6 +23,9 @@
   </table>
 </div>
 
+<app-editorial-form #formModal [editorialId]="selectedId" (modalClosed)="onModalCLosed()"></app-editorial-form>
+
+<!-- <a (click)="openModal(modalContent, 'new')" routerLink="editorial" ></a>
 <ng-template #modalContent let-modal>
   <div class="modal-header">
     <h5 class="modal-title" id="modalbasictitle">
@@ -31,7 +34,7 @@
     <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
   </div>
   <router-outlet></router-outlet>
-</ng-template>
+</ng-template> -->
 
 <!-- <ng-template #modal>
   <ng-container *ngTemplateOutlet="modalContent"></ng-container>

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Editorial } from 'src/app/model/editorial';
 import { EditorialService } from 'src/app/services/editorial.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditorialFormComponent } from '../editorial-form/editorial-form.component';
 
 @Component({
   selector: 'app-editoriales',
@@ -10,8 +10,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EditorialesComponent implements OnInit {
   editoriales: Editorial[] = [];
+  selectedId?:number;
   formMode?:string|null;
-  constructor(private editorialService: EditorialService, private modalService: NgbModal) {}
+  @ViewChild('formModal') editorialFromModal!: EditorialFormComponent;
+
+  constructor(private editorialService: EditorialService) {}
 
   ngOnInit() {
     this.loadEditoriales();
@@ -42,8 +45,12 @@ export class EditorialesComponent implements OnInit {
     }
   }
 
-  openModal(content: any, formMode: string) {
-    this.formMode = formMode;
-    this.modalService.open(content, { ariaLabelledBy: 'modalbasictitle' });
+  openFormModal(formMode: string, selectedId?:number) {
+    this.selectedId = selectedId;
+    this.editorialFromModal.openModal(formMode);
+  }
+
+  onModalCLosed() {
+    this.loadEditoriales();
   }
 }
