@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Editorial } from 'src/app/model/editorial';
 import { EditorialService } from 'src/app/services/editorial.service';
-import { EditorialFormComponent } from '../editorial-form/editorial-form.component';
 
 @Component({
   selector: 'app-editoriales',
@@ -10,9 +9,8 @@ import { EditorialFormComponent } from '../editorial-form/editorial-form.compone
 })
 export class EditorialesComponent implements OnInit {
   editoriales: Editorial[] = [];
-  selectedId?:number;
-  formMode?:string|null;
-  @ViewChild('formModal') editorialFromModal!: EditorialFormComponent;
+  selectedId?: number;
+  formMode?: string;
 
   constructor(private editorialService: EditorialService) {}
 
@@ -45,12 +43,7 @@ export class EditorialesComponent implements OnInit {
     }
   }
 
-  openFormModal(formMode: string, selectedId?:number) {
-    this.selectedId = selectedId;
-    this.editorialFromModal.openModal(formMode);
-  }
-
-  onModalCLosed() {
+  onModalClosed() {
     this.loadEditoriales();
   }
 }

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { Router } from '@angular/router';
 import { Editorial } from 'src/app/model/editorial';
 import { EditorialService } from 'src/app/services/editorial.service';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-editorial-form',
@@ -10,17 +10,18 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./editorial-form.component.scss']
 })
 export class EditorialFormComponent implements OnInit {
-  @ViewChild('modalContent') modalRef!: NgbModalRef;
-  @Output() modalClosed: EventEmitter<void> = new EventEmitter<void>();
+  // @ViewChild('modalContent') modalRef!: NgbModalRef;
+  @Output() closed: EventEmitter<void> = new EventEmitter<void>();
+  @Output() saved: EventEmitter<void> = new EventEmitter<void>();
   @Input('editorialId') editorialId?: number;
-  title?: string;
+  // title?: string;
   editorial: Editorial = {};
   updating = false;
 
   constructor(
     private editorialService: EditorialService,
     private router: Router,
-    private modalService: NgbModal
+    // private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -29,8 +30,8 @@ export class EditorialFormComponent implements OnInit {
 
   loadEditorial() {
     // Lógica para cargar la editorial
-    if (this.editorialId !== undefined && !isNaN(Number(this.editorialId))) {
-      this.editorialService.get(this.editorialId ?? 0).subscribe({
+    if (this.editorialId !== null) {
+      this.editorialService.get(this.editorialId!).subscribe({
         next: (value: Editorial) => {
           if (value != null) {
             this.editorial = value;
@@ -46,12 +47,13 @@ export class EditorialFormComponent implements OnInit {
   }
 
   saveEditorial() {
-    if (this.editorialId) {
+    if (this.editorialId !== null) {
       // Lógica para guardar la editorial actualizada
       this.editorialService.put(this.editorial).subscribe({
         next: (response: any) => {
           console.log('Editorial guardada exitosamente');
-          this.modalRef.dismiss();
+          // modalRef.dismiss();
+          this.closed.emit();
           this.router.navigate(['/editoriales']);
         },
         error: (error: any) => {
@@ -63,7 +65,8 @@ export class EditorialFormComponent implements OnInit {
       this.editorialService.post(this.editorial).subscribe({
         next: (response: any) => {
           console.log('Editorial guardada exitosamente');
-          this.modalRef.dismiss();
+          // this.modalRef.dismiss();
+          this.closed.emit();
           this.router.navigate(['/editoriales']);
         },
         error: (error: any) => {
@@ -73,27 +76,27 @@ export class EditorialFormComponent implements OnInit {
     }
   }
 
-  openModal(formMode: string) {
-    this.setTitle(formMode);
-    this.modalRef = this.modalService.open(this.modalRef);
-  }
+  // openModal(formMode: string) {
+  //   this.setTitle(formMode);
+  //   this.modalRef = this.modalService.open(this.modalRef);
+  // }
 
   closeModal() {
-    this.modalRef.close();
-    this.modalClosed.emit();
+    // this.modalRef.close();
+    this.closed.emit();
   }
 
-  setTitle(formMode: string) {
-    switch (formMode) {
-      case 'view':
-        this.title = 'Detalles de editorial';
-        break;
-      case 'edit':
-        this.title = 'Editar editorial';
-        break;
-      default:
-        this.title = 'Registrar editorial';
-        break;
-    }
-  }
+  // setTitle(formMode: string) {
+  //   switch (formMode) {
+  //     case 'view':
+  //       this.updating = false;
+  //       break;
+  //     case 'edit':
+  //       this.updating = true;
+  //       break;
+  //     // default:
+  //     //   this.title = 'Registrar editorial';
+  //       // break;
+  //   }
+  // }
 }
