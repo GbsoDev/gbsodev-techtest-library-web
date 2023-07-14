@@ -8,13 +8,13 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ms-auto">
       <li class="nav-item" *ngIf="isLoggedIn()">
-        <a class="nav-link" routerLink="libros" routerLinkActive="active">Libros</a>
+        <a class="nav-link" routerLink="library/libros" routerLinkActive="active">Libros</a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">
-        <a class="nav-link" routerLink="autores" routerLinkActive="active">Autores</a>
+        <a class="nav-link" routerLink="library/autores" routerLinkActive="active">Autores</a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">
-        <a class="nav-link" routerLink="editoriales" routerLinkActive="active">Editoriales</a>
+        <a class="nav-link" routerLink="library/editoriales" routerLinkActive="active">Editoriales</a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn()">
         <button class="nav-link btn btn-outline-primary" (click)="logout()">Cerrar sesión</button>

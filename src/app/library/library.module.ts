@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { LibraryRoutingModule } from './library-routing.module';
 import { AutoresComponent } from './autores/autores.component';
 import { LibrosComponent } from './libros/libros.component';
@@ -13,6 +12,7 @@ import { LibroFormComponent } from './libro-form/libro-form.component';
 import { EditorialFormComponent } from './editorial-form/editorial-form.component';
 import { LibraryComponent } from './library.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -26,12 +26,13 @@ import { FormsModule } from '@angular/forms';
     AutorFormComponent,
     LibroFormComponent,
     EditorialFormComponent,
-    LibraryComponent
+    LibraryComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    LibraryRoutingModule
+    LibraryRoutingModule,
+    SharedModule
   ],
   providers: [
   ]
