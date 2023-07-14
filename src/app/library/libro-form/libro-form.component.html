@@ -1,7 +1,8 @@
-<form (ngSubmit)="saveLibro()">
+<form (ngSubmit)="saveObject()">
   <div class="mb-3">
     <label for="isbn" class="form-label">ISBN:</label>
-    <input type="text" class="form-control" id="isbn" name="isbn" [(ngModel)]="libro.isbn" [disabled]="updating" required>
+    <input type="text" class="form-control" id="isbn" name="isbn" [(ngModel)]="libro.isbn" [disabled]="updating"
+      required>
   </div>
   <div class="mb-3">
     <label for="titulo" class="form-label">Título:</label>
@@ -10,7 +11,8 @@
   <div class="mb-3">
     <label for="editorialId" class="form-label">Editorial:</label>
     <select class="form-control" id="editorialId" name="editorialId" [(ngModel)]="libro.editorialId" required>
-      <option *ngFor="let editorial of editoriales" [value]="editorial.id">{{ editorial.id }} - {{ editorial.nombre }}</option>
+      <option *ngFor="let editorial of editoriales" [value]="editorial.id">{{ editorial.id }} - {{ editorial.nombre }}
+      </option>
     </select>
   </div>
   <div class="mb-3">
@@ -24,11 +26,12 @@
   <div class="mb-3">
     <label for="autores" class="form-label">Autores:</label>
     <select class="form-control" id="autores" name="autores" [(ngModel)]="libro.autores" multiple required>
-      <option *ngFor="let autor of autores" [value]="autor" [selected]="autorsIsSelected(autor)">{{ autor.nombre }}</option>
+      <option *ngFor="let autor of autores" [value]="autor" [selected]="autorsIsSelected(autor)">{{ autor.nombre }}
+      </option>
     </select>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <button type="button" class="btn btn-secondary" (click)="finalize()">Cerrar</button>
     <button type="submit" class="btn btn-primary">{{ updating ? 'Actualizar' : 'Guardar' }}</button>
   </div>
 </form>

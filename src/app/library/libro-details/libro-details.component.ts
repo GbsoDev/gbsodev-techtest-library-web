@@ -1,45 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { Libro } from 'src/app/model/libro';
 import { LibroService } from 'src/app/services/libro.service';
+import { BaseInModalForm } from 'src/app/shared/modal-form/base-in-modal-form';
 
 @Component({
   selector: 'app-libro-details',
   templateUrl: './libro-details.component.html',
   styleUrls: ['./libro-details.component.scss']
 })
-export class LibroDetailsComponent implements OnInit  {
-  constructor(
-    private libroService: LibroService,
-    private route: ActivatedRoute){
-  }
-  libroId!:number;
-  libro?:Libro;
+export class LibroDetailsComponent extends BaseInModalForm<number> {
+  libro?: Libro | null = {
+    autores: []
+  };
 
-  ngOnInit() {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    if (idParam != null && !isNaN(Number(idParam))) {
-      this.libroId = Number(idParam);
-      this.loadLibro()
-    }
+  constructor(private libroService: LibroService) {
+    super();
   }
 
-  loadLibro() {
-    // Lógica para cargar el libro
-    this.libroService.get(this.libroId).subscribe(
-      {
+  protected override findObject(): void {
+    this.title = 'Detalles de libro';
+    if (this.selectedId != null) {
+      this.libroService.get(this.selectedId).subscribe({
         next: (value: Libro) => {
-          if(value != null){
+          if (value != null) {
             this.libro = value;
           }
         },
         error: (error: any) => {
-          console.log(error);
+          console.log('Error al cargar los detalles del libro', error);
         },
-        complete: () => {
+        complete: () => { }
+      });
+    }
+    else { }
+  }
 
-        }
-      }
-    );
+  protected override saveObject(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  protected override clear(): void {
+    this.libro = {
+      autores: []
+    };
   }
 }

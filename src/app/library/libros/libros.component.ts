@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Libro } from 'src/app/model/libro';
 import { LibroService } from 'src/app/services/libro.service';
 
@@ -8,34 +8,30 @@ import { LibroService } from 'src/app/services/libro.service';
   styleUrls: ['./libros.component.scss']
 })
 export class LibrosComponent implements OnInit {
-  libros:Libro[]=[];
-  updating:boolean=false;
-  watching:boolean=false;
+  @ViewChild('formModal') modalRef: any;
+  libros: Libro[] = [];
+  formMode?: string;
 
-  constructor(private libroService: LibroService){}
+  constructor(private libroService: LibroService) { }
 
   ngOnInit() {
     this.loadLibros();
   }
 
-  loadLibros(){
-    this.libroService.list().subscribe(
-      {
-        next: (value: Libro[]) => {
-          this.libros = value;
-        },
-        error: (error: any) => {
-          console.log(error);
-        },
-        complete: () => {
-
-        }
-      }
-    )
+  loadLibros() {
+    this.libroService.list().subscribe({
+      next: (value: Libro[]) => {
+        this.libros = value;
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+      complete: () => { }
+    });
   }
 
-  deleteLibro(libro: Libro){
-    if(libro.isbn != null){
+  deleteLibro(libro: Libro) {
+    if (libro.isbn != null) {
       this.libroService.delete(libro.isbn).subscribe({
         next: (response: any) => {
           console.log('Libro eliminado');
@@ -43,8 +39,13 @@ export class LibrosComponent implements OnInit {
         },
         error: (error: any) => {
           console.log('Error al eliminar libro', error);
-        }
+        },
+        complete: () => { }
       });
     }
+  }
+
+  closeModal() {
+    this.loadLibros();
   }
 }

@@ -1,6 +1,6 @@
 <div>
   <h2>Listado de Libros</h2>
-  <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="watching = true;" routerLink="libro"><button class="btn btn-primary">Nuevo</button></a>
+  <button class="btn btn-primary" (click)="form.load(); modalForm.open()">Nuevo</button>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -14,8 +14,9 @@
         <td>{{ libro.titulo }}</td>
         <td>{{ libro.sinopsis }}</td>
         <td>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updating = false; watching = false;" routerLink="{{ libro.isbn }}"><button class="btn btn-info">Ver</button></a>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="updating = true; watching = false;" routerLink="libro/{{ libro.isbn }}"><button class="btn btn-warning">Editar</button></a>
+          <button class="btn btn-info" (click)="formMode = 'view'; view.load(libro.isbn); modalView.open()">Ver</button>
+          <button class="btn btn-warning"
+            (click)="formMode = 'edit'; form.load(libro.isbn); modalForm.open()">Editar</button>
           <button class="btn btn-danger" (click)="deleteLibro(libro)">Eliminar</button>
         </td>
       </tr>
@@ -23,16 +24,9 @@
   </table>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{ watching ? 'Detalles del libro' : updating ? 'Actualizar libro' : 'Registrar nuevo libro' }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  </div>
-</div>
+<app-modal-form #modalForm [modal-id]="'formModal'" [modal-title]="form.title" (cloced)="closeModal()">
+  <app-libro-form #form (finalized)="modalForm.cloce()"></app-libro-form>
+</app-modal-form>
+<app-modal-form #modalView [modal-id]="'modalView'" [modal-title]="view.title" (cloced)="closeModal()">
+  <app-libro-details #view (finalized)="modalView.cloce()"></app-libro-details>
+</app-modal-form>

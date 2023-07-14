@@ -23,7 +23,8 @@
   <div class="mb-3">
     <label for="autores" class="form-label">Autores:</label>
     <ul class="list-group">
-      <li *ngFor="let autor of libro?.autores ?? []" class="list-group-item">{{ autor.nombre }} - {{ autor.apellidos }}</li>
+      <li *ngFor="let autor of libro?.autores ?? []" class="list-group-item">{{ autor.nombre }} - {{ autor.apellidos }}
+      </li>
     </ul>
   </div>
 </div>
