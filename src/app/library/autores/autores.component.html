@@ -1,6 +1,6 @@
 <div>
   <h2>Listado de Autores</h2>
-  <a data-toggle="modal" data-target="#exampleModal" (click)="updating = false; watching = false;" routerLink="autor"><button class="btn btn-primary">Nuevo</button></a>
+  <button class="btn btn-primary" (click)="form.load(); modalForm.open()">Nuevo</button>
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -14,8 +14,9 @@
         <td>{{ autor.nombre }}</td>
         <td>{{ autor.apellidos }}</td>
         <td>
-          <a data-toggle="modal" data-target="#exampleModal" (click)="updating = false; watching = true;" routerLink="{{ autor.id }}"><button class="btn btn-info">Ver</button></a>
-          <a data-toggle="modal" data-target="#exampleModal" (click)="updating = true; watching = false;" routerLink="autor/{{ autor.id }}"><button class="btn btn-warning">Editar</button></a>
+          <button class="btn btn-info" (click)="formMode = 'view'; view.load(autor.id); modalView.open()">Ver</button>
+          <button class="btn btn-warning"
+            (click)="formMode = 'edit'; form.load(autor.id); modalForm.open()">Editar</button>
           <button class="btn btn-danger" (click)="deleteAutor(autor)">Eliminar</button>
         </td>
       </tr>
@@ -23,18 +24,9 @@
   </table>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{ watching ? 'Detalles del autor' : updating ? 'Actualizar autor' : 'Registrar nuevo autor' }}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  </div>
-</div>
+<app-modal-form #modalForm [modal-id]="'formModal'" [modal-title]="form.title" (cloced)="closeModal()">
+  <app-autor-form #form (finalized)="modalForm.cloce()"></app-autor-form>
+</app-modal-form>
+<app-modal-form #modalView [modal-id]="'modalView'" [modal-title]="view.title" (cloced)="closeModal()">
+  <app-autor-details #view (finalized)="modalView.cloce()"></app-autor-details>
+</app-modal-form>

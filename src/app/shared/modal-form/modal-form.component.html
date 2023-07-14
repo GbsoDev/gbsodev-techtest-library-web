@@ -1,0 +1,14 @@
+<button type="button" #openModalBtn hidden data-bs-toggle="modal" [attr.data-bs-target]="'#formModal'+modalId"></button>
+<div class="modal fade" id="formModal{{modalId}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{modalTitle}}</h5>
+        <button type="button" #cloceModalBtn data-bs-dismiss="modal" class="btn-close" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

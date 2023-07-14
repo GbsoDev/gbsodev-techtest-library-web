@@ -1,31 +1,30 @@
 <div class="container">
   <h2>Detalles del libro</h2>
-
-  <div class="form-group">
-    <label>ISBN:</label>
-    <span class="form-control">{{ libro?.isbn }}</span>
+  <div class="mb-3">
+    <label for="isbn" class="form-label">ISBN:</label>
+    <span id="isbn" class="form-control">{{ libro?.isbn }}</span>
   </div>
-  <div class="form-group">
-    <label>Título:</label>
-    <span class="form-control">{{ libro?.titulo }}</span>
+  <div class="mb-3">
+    <label for="titulo" class="form-label">Título:</label>
+    <span id="titulo" class="form-control">{{ libro?.titulo }}</span>
   </div>
-  <div class="form-group">
-    <label>Editorial:</label>
-    <span class="form-control">{{ libro?.editorialNombre }}</span>
+  <div class="mb-3">
+    <label for="editorial" class="form-label">Editorial:</label>
+    <span id="editorial" class="form-control">{{ libro?.editorialNombre }}</span>
   </div>
-  <div class="form-group">
-    <label>Sinopsis:</label>
-    <span class="form-control">{{ libro?.sinopsis }}</span>
+  <div class="mb-3">
+    <label for="sinopsis" class="form-label">Sinopsis:</label>
+    <span id="sinopsis" class="form-control">{{ libro?.sinopsis }}</span>
   </div>
-  <div class="form-group">
-    <label>N° páginas:</label>
-    <span class="form-control">{{ libro?.nPaginas }}</span>
+  <div class="mb-3">
+    <label for="nPaginas" class="form-label">N° páginas:</label>
+    <span id="nPaginas" class="form-control">{{ libro?.nPaginas }}</span>
   </div>
-  <div class="form-group">
-    <label>Autores:</label>
+  <div class="mb-3">
+    <label for="autores" class="form-label">Autores:</label>
     <ul class="list-group">
-      <li *ngFor="let autor of libro?.autores ?? []" class="list-group-item">{{ autor.nombre }} - {{ autor.apellidos
-        }}</li>
+      <li *ngFor="let autor of libro?.autores ?? []" class="list-group-item">{{ autor.nombre }} - {{ autor.apellidos }}
+      </li>
     </ul>
   </div>
 </div>

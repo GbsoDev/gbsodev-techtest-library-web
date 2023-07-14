@@ -1,46 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Autor } from 'src/app/model/autor';
 import { AutorService } from 'src/app/services/autor.service';
+import { BaseInModalForm } from 'src/app/shared/modal-form/base-in-modal-form';
 
 @Component({
   selector: 'app-autor-details',
   templateUrl: './autor-details.component.html',
   styleUrls: ['./autor-details.component.scss']
 })
-export class AutorDetailsComponent {
-  constructor(
-    private autorService: AutorService,
-    private route: ActivatedRoute) {
+export class AutorDetailsComponent extends BaseInModalForm<number> {
+  autor: Autor = {};
+
+  constructor(private autorService: AutorService) {
+    super();
   }
 
-  autorId!: number;
-  autor?:Autor;
-
-  ngOnInit() {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    if (idParam != null && !isNaN(Number(idParam))) {
-      this.autorId = Number(idParam);
-      this.loadAutor()
-    }
-  }
-
-  loadAutor() {
-    // Lógica para cargar el autor
-    this.autorService.get(this.autorId).subscribe(
-      {
+  protected override findObject(): void {
+    this.title = 'Detalles de autor';
+    if (this.selectedId != null) {
+      this.autorService.get(this.selectedId!).subscribe({
         next: (value: Autor) => {
           if (value != null) {
             this.autor = value;
           }
         },
         error: (error: any) => {
-          console.log(error);
+          console.log('Error al cargar los detalles del autor', error);
         },
-        complete: () => {
+        complete: () => { }
+      });
+    }
+    else { }
+  }
 
-        }
-      }
-    );
+  protected override saveObject(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  protected override clear(): void {
+    this.autor = {};
   }
 }

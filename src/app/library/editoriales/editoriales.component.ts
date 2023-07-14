@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Editorial } from 'src/app/model/editorial';
 import { EditorialService } from 'src/app/services/editorial.service';
 
@@ -8,9 +8,10 @@ import { EditorialService } from 'src/app/services/editorial.service';
   styleUrls: ['./editoriales.component.scss']
 })
 export class EditorialesComponent implements OnInit {
-  updating:boolean=false;
-  watching:boolean=false;
+  @ViewChild('formModal') modalRef: any;
   editoriales: Editorial[] = [];
+  selectedId?: number;
+  formMode?: string;
 
   constructor(private editorialService: EditorialService) {}
 
@@ -24,9 +25,8 @@ export class EditorialesComponent implements OnInit {
         this.editoriales = value;
       },
       error: (error: any) => {
-        console.log(error);
-      },
-      complete: () => {}
+        console.log('Error al consultar editorial', error);
+      }
     });
   }
 
@@ -42,5 +42,9 @@ export class EditorialesComponent implements OnInit {
         }
       });
     }
+  }
+
+  closeModal() {
+    this.loadEditoriales();
   }
 }
