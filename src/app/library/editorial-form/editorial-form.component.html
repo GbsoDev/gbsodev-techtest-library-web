@@ -1,14 +1,16 @@
-<form (ngSubmit)="saveEditorial()">
-  <div class="mb-3">
-    <label for="nombre" class="form-label">Nombre:</label>
-    <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="editorial.nombre" required>
-  </div>
-  <div class="mb-3">
-    <label for="sede" class="form-label">Sede:</label>
-    <input class="form-control" type="text" id="sede" name="sede" [(ngModel)]="editorial.sede" required>
+<form (ngSubmit)="saveObject()">
+  <div class="modal-body">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="editorial.nombre" required>
+    </div>
+    <div class="mb-3">
+      <label for="sede" class="form-label">Sede:</label>
+      <input class="form-control" type="text" id="sede" name="sede" [(ngModel)]="editorial.sede" required>
+    </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <button type="button" class="btn btn-secondary" (click)="finalize()">Cerrar</button>
     <button type="submit" class="btn btn-primary">{{ updating ? 'Actualizar' : 'Guardar' }}</button>
   </div>
 </form>
